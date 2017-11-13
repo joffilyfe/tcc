@@ -1,0 +1,37 @@
+.groups {
+    display: block;
+    width: 100;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.groups > div {
+    display: flex;
+    width: 50%;
+    margin: 0;
+    height: 150px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+.groups .a {
+    background: rgba(23, 164, 229, 0.3);
+}
+
+.groups .a.active {
+    background: rgba(23, 164, 229, 0.8);
+}
+
+.groups .b {
+    background: rgba(26, 229, 24, 0.3);
+}
+
+.groups .c {
+    background: rgba(229, 216, 14, 0.3);
+}
+
+.groups .d {
+    background: rgba(229, 36, 24, 0.3);
+}

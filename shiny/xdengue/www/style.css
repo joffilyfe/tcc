@@ -16,22 +16,44 @@
     justify-content: center;
 }
 
+.groups div.active {
+    border: 1px solid;
+}
+
 .groups .a {
-    background: rgba(23, 164, 229, 0.3);
+    background: rgba(23, 164, 229, 0.05);
 }
 
 .groups .a.active {
-    background: rgba(23, 164, 229, 0.8);
+    background: rgba(23, 164, 229, 0.9);
 }
 
 .groups .b {
-    background: rgba(26, 229, 24, 0.3);
+    background: rgba(26, 229, 24, 0.05);
+}
+
+.groups .b.active {
+    background: rgba(100, 229, 100, 0.9);
 }
 
 .groups .c {
-    background: rgba(229, 216, 14, 0.3);
+    background: rgba(229, 216, 14, 0.05);
+}
+
+.groups .c.active {
+    background: rgba(229, 216, 14, 0.9);
 }
 
 .groups .d {
-    background: rgba(229, 36, 24, 0.3);
+    background: rgba(229, 36, 24, 0.05);
+}
+
+.groups .d.active {
+    background: rgba(229, 36, 24, 0.9);
+    color: #fff;
+}
+
+h6.tipo {
+    // display: none;
+    visibility: hidden;
 }

@@ -26,6 +26,7 @@ ui <- fluidPage(
        selectInput("vomito", "Vômito constante", choices = c("Não" = FALSE, "Sim" = TRUE)),
        selectInput("mialgia", "Dores de cabeça", choices = c("Não" = FALSE, "Sim" = TRUE)),
        selectInput("laco", "Prova do laço", choices = c("Não" = FALSE, "Sim" = TRUE)),
+       selectInput("obito", "Morte", choices = c("Não" = FALSE, "Sim" = TRUE)),
        actionButton("ver", "Visualizar")
     ),
     
@@ -35,14 +36,43 @@ ui <- fluidPage(
       p("A dengue é uma doença transmitida pelo mosquito Aedes Aegypti e suas consequências podem variar desde um mal estar intenso como até mesmo a morte."),
       p("Mesmo sendo uma doença com um perfil bastante conhecido no Brasil, muitas pessoas ainda não conseguem perceber que estão com os sinais e sintomas que indicam a presença da doença."),
       hr(),
-      div(class="groups",
-          div(class="a", h2("A")),
+      conditionalPanel(
+        condition = "output.tipo == 'A'",
+        div(class="groups",
+          div(class="a active", h2("A")),
           div(class="b", h2("B")),
           div(class="c", h2("C")),
           div(class="d", h2("D"))
+        )
       ),
-      textOutput("tipo"),
-      textOutput("tipox")
+      conditionalPanel(
+        condition = "output.tipo == 'B'",
+        div(class="groups",
+            div(class="a", h2("A")),
+            div(class="b active", h2("B")),
+            div(class="c", h2("C")),
+            div(class="d", h2("D"))
+        )
+      ),
+      conditionalPanel(
+        condition = "output.tipo == 'C'",
+        div(class="groups",
+            div(class="a", h2("A")),
+            div(class="b", h2("B")),
+            div(class="c active", h2("C")),
+            div(class="d", h2("D"))
+        )
+      ),
+      conditionalPanel(
+        condition = "output.tipo == 'D'",
+        div(class="groups",
+            div(class="a", h2("A")),
+            div(class="b", h2("B")),
+            div(class="c", h2("C")),
+            div(class="d active", h2("D"))
+        )
+      ),
+      h6(class="tipo", textOutput("tipo"))
     )
   )
 )

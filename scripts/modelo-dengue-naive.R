@@ -129,7 +129,7 @@ xpredicted == data_to_test[, 20]
 count_how_many_itens_is_equals(xpredicted, data_to_test[, 20]) * 100 / 1000
 
 
-predict(model, data.frame(ARTRALGIA=TRUE, FEBRE=FALSE, MIALGIA=TRUE, DT_OBITO=FALSE, VOMITO=FALSE, LACO=FALSE, DOR_RETRO=TRUE, LEUCOPENIA=TRUE), type="class")
+predict(modelo, data.frame(LACO=TRUE, VOMITO=TRUE, DT_OBITO=TRUE), type="class")
 
 saveRDS(model, "/Users/joffily/Desktop/TCC/models/xdengue.RData")
 modelo <- readRDS(file="/Users/joffily/Desktop/TCC/models/xdengue.RData")

@@ -8,10 +8,11 @@
 #
 
 library(shiny)
+library(naivebayes)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-  modelo <- readRDS(file="/Users/joffily/Desktop/TCC/models/xdengue.RData")
+  modelo <- readRDS(file="./models/xdengue.RData")
 
   #selectedData <- reactive({
   #  dados <- data.frame(VOMITO=as.logical(input$vomito),
@@ -25,7 +26,8 @@ shinyServer(function(input, output) {
     dados <- data.frame(VOMITO=as.logical(input$vomito),
                         LACO=as.logical(input$laco),
                         FEBRE=as.logical(input$febre),
-                        MIALGIA=as.logical(input$mialgia))
+                        MIALGIA=as.logical(input$mialgia),
+                        DT_OBITO=as.logical(input$obito))
     predict(modelo, dados)
   }, ignoreNULL = FALSE)
 

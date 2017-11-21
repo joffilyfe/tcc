@@ -42,7 +42,7 @@ dengue.2016.filtered[, "DT_OBITO"] <- ifelse(!is.na(dengue.2016.filtered[, "DT_O
 # write.csv(dengue.2016.filtered, "./datasets/dengue-2016-filtered.csv")
 
 
-attr_group_to_case <- function(LACO, VOMITO, DT_OBITO, ARTRALGIA, CEFALEIA, DOR_RETRO) {
+attr_group_to_case <- function(LACO, VOMITO, DT_OBITO, ARTRALGIA, CEFALEIA, DOR_RETRO, DIABETES) {
   # Sinais gerais (na ausência de mais sintomas podemos dizer que este é um grupo A)
   # ARTRALGIA (Dores articulares) && CEFALEIA (Dores de cabeça) && DOR_RETRO (Dores ao redor dos olhos)
 
@@ -55,12 +55,12 @@ attr_group_to_case <- function(LACO, VOMITO, DT_OBITO, ARTRALGIA, CEFALEIA, DOR_
     group <- "D"
   } else if (VOMITO) {
     group <- "C"
-  } else if (LACO && !VOMITO) {
+  } else if (LACO || DIABETES && !VOMITO) { # Diabetes é uma comorbidade
     group <- "B"
-  } else if (!LACO && !VOMITO && !DT_OBITO) { # Não tem sintomas de alarme / choque
+  } else if (!LACO && !VOMITO && !DT_OBITO && !DIABETES) { # Não tem sintomas de alarme / choque
     group <- "A"
-  } else if (ARTRALGIA && CEFALEIA && FEBRE ||(ARTRALGIA && CEFALEIA) ||
-             (CEFALEIA && FEBRE) || (ARTRALGIA && FEBRE)) { # Tem sintomas comuns porém com pelo menos duas combinações
+  } else if ( (ARTRALGIA && CEFALEIA && FEBRE && DOR_RETRO || (ARTRALGIA && CEFALEIA) ||
+             (CEFALEIA && FEBRE) || (ARTRALGIA && FEBRE) ) && !DIABETES) { # Tem sintomas comuns porém com pelo menos duas combinações
     group <- "A"
   } else { # Se tiver o laço e nenhum dos sintomas acima então é caracterizado como B
     group <- "B"
@@ -72,7 +72,7 @@ attr_group_to_case <- function(LACO, VOMITO, DT_OBITO, ARTRALGIA, CEFALEIA, DOR_
 
 # Apply our function to dataset
 # We must try improve this function
-dengue.2016.filtered$GRUPO <- apply(dengue.2016.filtered[, c("LACO", "VOMITO", "DT_OBITO", "ARTRALGIA", "CEFALEIA", "DOR_RETRO")], 1, function(x) attr_group_to_case(x[1], x[2], x[3], x[4], x[5], x[6]))
+dengue.2016.filtered$GRUPO <- apply(dengue.2016.filtered[, c("LACO", "VOMITO", "DT_OBITO", "ARTRALGIA", "CEFALEIA", "DOR_RETRO", "DIABETES")], 1, function(x) attr_group_to_case(x[1], x[2], x[3], x[4], x[5], x[6], x[7]))
 
 
 # Checa quantos caso do grupo D existiram
@@ -137,4 +137,32 @@ modelo <- readRDS(file="/Users/joffily/Desktop/TCC/models/xdengue.RData")
 # Test if our model act how we spect
 # predict(modelo, data.frame(ARTRALGIA=TRUE, FEBRE=FALSE, MIALGIA=TRUE, DT_OBITO=FALSE, VOMITO=FALSE, LACO=FALSE, DOR_RETRO=TRUE, LEUCOPENIA=TRUE), type="class")
 
+## Caret model
+set.seed(1234)
+dengue.2016.filtered.ordered <- dengue.2016.filtered[order(-dengue.2016.filtered$DT_OBITO), ]
+head(dengue.2016.filtered.ordered)
 
+index_to_train <- sample(1:nrow(dengue.2016.filtered.ordered), round(nrow(dengue.2016.filtered.ordered)/5)*3)
+index_to_train <- sample(1:nrow(dengue.2016.filtered.ordered), 3000)
+index_to_test <- sample(1:nrow(dengue.2016.filtered.ordered), 1000)
+data_to_train <- dengue.2016.filtered.ordered[index_to_train,]
+data_to_test <- dengue.2016.filtered.ordered[-index_to_train,]
+data_to_train <- dengue.2016.filtered.ordered[1:3000,]
+data_to_test <- dengue.2016.filtered.ordered[index_to_test,]
+nrow(data_to_train)
+nrow(data_to_test)
+model_dengue <- train(data_to_train[, 1:19], data_to_train[, 20], method='knn')
+model_dengue <- train(data_to_train[, 1:19], data_to_train[, 20], method='rpart2')
+
+
+predictions <- predict(object=model_dengue, data_to_test[,1:19])
+table(predictions)
+confusionMatrix(predictions, data_to_test[, 20])
+
+predict(object = model_dengue, data.frame(RENAL=FALSE, HEPATOPAT=FALSE, HEMATOLOG=FALSE, DIABETES=TRUE, PETEQUIA_N=TRUE, ARTRITE=FALSE, CONJUNTVIT=FALSE, DOR_COSTAS=TRUE, NAUSEA=FALSE, EXANTEMA=FALSE, CEFALEIA=FALSE, ARTRALGIA=FALSE, FEBRE=FALSE, MIALGIA=FALSE, DT_OBITO=FALSE, VOMITO=FALSE, LACO=TRUE, DOR_RETRO=FALSE, LEUCOPENIA=FALSE))
+
+nrow(data_to_train[data_to_train$GRUPO == "B",])
+
+
+
+saveRDS(model_dengue, "/Users/joffily/Desktop/TCC/models/model_dengue.RData")

@@ -138,28 +138,34 @@ modelo <- readRDS(file="/Users/joffily/Desktop/TCC/models/xdengue.RData")
 # predict(modelo, data.frame(ARTRALGIA=TRUE, FEBRE=FALSE, MIALGIA=TRUE, DT_OBITO=FALSE, VOMITO=FALSE, LACO=FALSE, DOR_RETRO=TRUE, LEUCOPENIA=TRUE), type="class")
 
 ## Caret model
-set.seed(1234)
+library(caret)
+set.seed(42)
 dengue.2016.filtered.ordered <- dengue.2016.filtered[order(-dengue.2016.filtered$DT_OBITO), ]
 head(dengue.2016.filtered.ordered)
 
-index_to_train <- sample(1:nrow(dengue.2016.filtered.ordered), round(nrow(dengue.2016.filtered.ordered)/5)*3)
+#index_to_train <- sample(1:nrow(dengue.2016.filtered.ordered), round(nrow(dengue.2016.filtered.ordered)/5)*3)
 index_to_train <- sample(1:nrow(dengue.2016.filtered.ordered), 3000)
 index_to_test <- sample(1:nrow(dengue.2016.filtered.ordered), 1000)
 data_to_train <- dengue.2016.filtered.ordered[index_to_train,]
-data_to_test <- dengue.2016.filtered.ordered[-index_to_train,]
-data_to_train <- dengue.2016.filtered.ordered[1:3000,]
+#data_to_test <- dengue.2016.filtered.ordered[-index_to_train,]
+#data_to_train <- dengue.2016.filtered.ordered[1:3000,]
 data_to_test <- dengue.2016.filtered.ordered[index_to_test,]
-nrow(data_to_train)
-nrow(data_to_test)
+#nrow(data_to_train)
+#nrow(data_to_test)
 model_dengue <- train(data_to_train[, 1:19], data_to_train[, 20], method='knn')
 model_dengue <- train(data_to_train[, 1:19], data_to_train[, 20], method='rpart2')
+model_dengue <- train(GRUPO ~ ., data=dengue.2016.filtered, method='nb',
+                      trControl = trainControl(
+                        method = "cv", number = 10,
+                        verboseIter = TRUE)
+                      )
 
 
 predictions <- predict(object=model_dengue, data_to_test[,1:19])
 table(predictions)
 confusionMatrix(predictions, data_to_test[, 20])
 
-predict(object = model_dengue, data.frame(RENAL=FALSE, HEPATOPAT=FALSE, HEMATOLOG=FALSE, DIABETES=TRUE, PETEQUIA_N=TRUE, ARTRITE=FALSE, CONJUNTVIT=FALSE, DOR_COSTAS=TRUE, NAUSEA=FALSE, EXANTEMA=FALSE, CEFALEIA=FALSE, ARTRALGIA=FALSE, FEBRE=FALSE, MIALGIA=FALSE, DT_OBITO=FALSE, VOMITO=FALSE, LACO=TRUE, DOR_RETRO=FALSE, LEUCOPENIA=FALSE))
+predict(object = model_dengue, data.frame(RENAL=TRUE, HEPATOPAT=TRUE, HEMATOLOG=TRUE, DIABETES=TRUE, PETEQUIA_N=TRUE, ARTRITE=TRUE, CONJUNTVIT=TRUE, DOR_COSTAS=TRUE, NAUSEA=TRUE, EXANTEMA=TRUE, CEFALEIA=TRUE, ARTRALGIA=TRUE, FEBRE=TRUE, MIALGIA=TRUE, DT_OBITO=TRUE, VOMITO=FALSE, LACO=TRUE, DOR_RETRO=FALSE, LEUCOPENIA=FALSE))
 
 nrow(data_to_train[data_to_train$GRUPO == "B",])
 

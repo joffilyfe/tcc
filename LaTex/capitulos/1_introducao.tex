@@ -1,0 +1,53 @@
+\chapter{Introdução}
+
+Este trabalho apresenta o resultado de um projeto de pesquisa aplicada, realizado no Instituto Federal da Paraíba - IFPB, Campus João Pessoa, que resultou na implementação de uma aplicação capaz de classificar doenças como Dengue e Chikungunya por meio dos sinais e sintomas apresentados. A aplicação permite o manuseio de um classificador por meio de uma página Web de forma simplificada, transparente e intuitiva para o usuário final.
+
+Este capítulo apresenta os objetivos do trabalho, explana sobre o projeto de pesquisa, descreve as atividades desenvolvidas e a organização do relatório.
+
+\section{Objetivos}
+
+Este trabalho tem como objetivo principal a aplicação de técnicas de mineração de dados e aprendizagem de máquina para a criação de um classificador capaz de distinguir entre enfermidades do tipo Dengue ou Chikungunya de modo que este classificador possa ser facilmente manuseado por usuários finais.
+
+Para atingir o objetivo principal deste trabalho, alguns objetivos específicos foram definidos, são eles:
+
+\begin{enumerate}
+  \item Tratar os dados referentes as arboviroses;
+  \item Estudar tarefas de classificação;
+  \item Implementar classificador;
+  \item Implementar aplicação de interação com o classificador;
+\end{enumerate}
+
+
+\section{O projeto}
+
+A demanda por informações em saúde vem crescendo a cada dia juntamente com os desafios para que sua utilização possa trazer resultados positivos. As informações devem prover aos médicos e gestores meios para que investigações mais precisas possam ser realizadas. Em especial, o cenário associado às doenças transmitidas pelo mosquito \emph{Aedes aegypti} (arboviroses) vêm causando necessidades específicas de estudos e de políticas públicas. 
+
+As arboviroses são doenças causadas pelos chamados arbovírus, cuja transmissão é realizada por artrópodes\footnote{\url{http://www.minhavida.com.br/saude/temas/arboviroses}}. Apesar do termo “arbovirose” referir-se à classificação de diversos tipos de vírus, atualmente, a expressão tem sido muito usada para designar as doenças transmitidas pelo Aedes aegypti, como o Zika vírus, Febre Chikungunya, Dengue e Febre Amarela \cite{IOC2018,CDCP2018}. Atualmente, diversos órgãos institucionais, além de pesquisadores e médicos, trabalham gerando e procurando usar dados sobre as arboviroses.
+
+Para viabilizar estudos, é necessário trabalhar com os dados de maneira que informações úteis possam ajudar na tomada de decisões. Estas podem ser com base em indicadores que irão auxiliar gestores na definição de políticas públicas ou informações relevantes que poderão ajudar especialistas a prevenir e diagnosticar casos de doenças. No caso das arboviroses, um dos desafios enfrentados pelos órgãos de saúde é lidar com a identificação das doenças e seus diferentes graus de ocorrência, visto que muitos dos sintomas se confundem. As quatro doenças possuem algumas características comuns e outras diferentes. Suas consequências, entretanto, podem variar muito. 
+
+Traçar os sintomas e os graus das doenças, classificá-los e/ou agrupá-los pode ajudar no diagnóstico e prevenção das doenças, além de facilitar estudos mais aprofundados sobre seus relacionamentos e possíveis consequências.  Nesse cenário, técnicas de mineração de dados podem ajudar \cite{han2012,Witten2016}.
+
+A mineração de dados envolve um conjunto de técnicas de exploração de grandes quantidades de dados de forma a descobrir novos padrões e relações que, devido ao volume de dados, não seriam facilmente descobertos a olho nu \cite{han2012,Witten2016}. Objetiva-se, com a mineração de dados, encontrar informação relevante, por meio, por exemplo, de agrupamentos, classificação e predição de tendências a partir dos dados. Como consequência do processo de mineração, possibilita-se tornar os padrões dos dados compreensíveis às pessoas, visando facilitar sua melhor interpretação e aprendizado. No escopo médico, pode-se, com isso, aprender mais sobre perfis de pacientes de acordo com cada doença (arbovirose), sobre as características das doenças, suas associações, além de seus graus e consequências. A mineração de dados é uma técnica que pode ajudar na elaboração de uma ferramenta capaz de aprender sobre o perfil de uma determinada doença por meio dos seus sinais e sintomas, mediante uma intensa bateria de testes e revisões, tal aplicação poderá se tornar útil pela área da saúde. Este trabalho tem como intenção o estudo e utilização da classificação que é uma das tarefas propostas pela mineração de dados.
+
+
+\section{Atividades}
+As atividades desenvolvidas durante o projeto de pesquisa foram as seguintes:
+\begin{enumerate}
+  \item Levantamento do estado da arte;
+  \item Compreensão dos dados sobre Dengue e Chikungunya;
+  \item Estudar os algoritmos de classificação;
+  \item Tratamento dos Dados;
+  \item Escolha e aplicação de algoritmos de classificação;
+  \item Especificação,  implementação e avaliação de aplicação de interação com o classificador
+\end{enumerate}
+
+\section{Organização do Relatório}
+Além do capítulo corrente, este trabalho está organizado da seguinte maneira:
+
+\begin{enumerate}
+  \item O Capítulo 2 apresenta os conceitos básicos e tecnologias utilizadas associados ao tema deste trabalho  e descreve alguns trabalhos relacionados.
+  \item O Capítulo 3 descreve em detalhes o processo utilizado para gerar o classificador assim como o processo de especificação e implementação da aplicação de interação com o classificador de enfermidades.
+  \item Por fim o Capítulo 4 discorre sobre as contribuições centrais do trabalho, apresenta  as dificuldades encontradas durante o processo e as sugestões para trabalhos futuros.
+\end{enumerate}
+

@@ -1,0 +1,20 @@
+\chapter{Considerações finais}
+
+Neste trabalho foi mostrado um modelo de classificação para Dengue e Chikungunya desenvolvido durante um projeto de pesquisa de inovação tecnológica. O modelo de classificação é utilizado por uma aplicação web para prover uma interface visual e clara do processo de classificação aos usuário final, possibilitando assim a sua utilização de maneira efetiva.
+
+
+\section{Contribuições}
+
+A aplicação web (ArboML) cria uma interface de acesso por meio da internet para um classificador de Dengue e Chikungunya que utiliza os sinais e sintomas apresentados por um ser humano para elencar o índice de probabilidade para cada uma das doenças. A interface disponibiliza um questionário simples que serve de guia para colher dados sobre o estado físico de uma pessoa de modo que o tempo de feedback entre as perguntas e respostas seja o menor possível.
+
+Também podem ser consideradas contribuições do projeto de pesquisa todo o processo que envolveu o ETL dos dados originais e a análise e entendimento das informações sobre as doenças. Além destes, foram realizados um processo de extração de informações referentes às precipitações de chuvas no estado da Paraíba, um processo para a criação de um modelo de regressão capaz de prever o aumento ou diminuição dos casos relacionados às arboviroses no estado da Paraíba (por município, região e microrregião) e uma aplicação de visualização de forma gráfica das predições em formato de mapas de calor.
+
+\section{Dificuldades encontradas}
+
+A principal dificuldade encontrada durante a realização deste trabalho tem uma relação muito profunda com manuseio dos dados disponibilizados pela SES-PB. Estes dados são advindos do dia a dia de trabalho de centenas de pessoas no estado da Paraíba o que possibilita a criação de um problema na qualidade de coleta. A falta de dados mais precisos,  balanceados e  normalizados impactou diretamente em todo o processo de KDD. Foi necessário a realização de um processo dispendioso, em termos de tempo, para que os dados fossem preparados para o treinamento do algoritmo de classificação.
+
+Além do problema relacionado à qualidade dos dados, foi detectado um problema muito característico das doenças do escopo deste trabalho: seus sinais e sintomas muito semelhantes afetam a acurácia da classificação, o suficiente para não se chegar a um patamar de concorrência com os exames clínicos. Este fator revela a importância de abordar o problema de classificação considerando esta particularidade.
+
+\section{Trabalhos futuros}
+
+Para trabalhos futuros nós gostaríamos de propor uma investigação mais profunda sobre o relacionamento dos sintomas das doenças e sua classificação por meio de outras técnicas de classificação como o \textit{deep learning}\footnote{\url{http://neuralnetworksanddeeplearning.com/chap6.html}}, \textit{Cost Sensitive Learning} e \textit{Active Learning} \cite{krishnamurthy2017active} e também outra técnica como \textit{Clustering}. Também se faz necessário a realização de experimentos em conjuntos de dados maiores e de diferentes regiões do Brasil o que possibilitaria a construção de uma base mais homogênea para a população brasileira e com mais informações para o treinamento do algoritmo.

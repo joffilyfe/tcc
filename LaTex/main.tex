@@ -1,0 +1,167 @@
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	%twoside,			% para impressão em recto e verso. Oposto a oneside
+	openany, oneside,
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2}
+	
+\input{config}
+
+
+\newcommand{\capaifpb}{%
+  \begin{capa}%
+    \center
+    %\ABNTEXchapterfont\large\imprimirautor
+	\begin{figure}[htb]
+		\begin{center}
+			\includegraphics[scale=0.15]{imagens/logoifpb.png}
+		\end{center}
+	\end{figure}
+
+    \large \textbf{Instituto Federal de Educa\c{c}\~{a}o, ci\^{e}ncia e tecnolodia da para\'{i}ba} \\
+    \large \textbf{Unidade acad\^{e}mica de Informa\c{c}\~{a}o e Comunica\c{c}\~{a}o} \\
+    \large Coordena\c{c}\~{a}o do Curso Superior de Tecnologia em Sistemas para Internet \\
+
+    \vfill
+	    \Huge Relat\'{o}rio de Est\'{a}gio \\
+		\Large \imprimirtitulo
+    \vfill
+    
+    \begin{center}
+		\Large \textbf{\imprimirautor}
+    \end{center}
+    \vfill
+    
+    \large\imprimirlocal
+
+    \large\imprimirdata
+    
+    \vspace*{1cm}
+  \end{capa}
+}
+
+
+\makeatletter
+\renewcommand{\folhaderostocontent}{
+  \begin{center}
+
+    %\vspace*{1cm}
+    {\abntex@ifnotempty{\imprimirinstituicao}{\imprimirinstituicao\vspace*{\fill}}}
+	
+    \vspace*{\fill}\vspace*{\fill}
+    \begin{center}
+      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+    \end{center}
+    \vspace*{\fill}
+    
+    {\ABNTEXchapterfont\large\imprimirautor}
+	
+    \abntex@ifnotempty{\imprimirpreambulo}{%
+      \hspace{.45\textwidth}
+      \begin{minipage}{.5\textwidth}
+      	\SingleSpacing
+         \imprimirpreambulo
+       \end{minipage}%
+       \vspace*{\fill}
+    }%
+
+    {\large\imprimirorientadorRotulo~\imprimirorientador\par}
+    \abntex@ifnotempty{\imprimircoorientador}{%
+       {\large\imprimircoorientadorRotulo~\imprimircoorientador}%
+    }%
+  
+    \large \coordenadorname \imprimircoordenador
+    
+    \vspace*{\fill}
+
+    {\large\imprimirlocal}
+    \par
+    {\large\imprimirdata}
+    \vspace*{1cm}
+
+  \end{center}
+}
+\makeatother
+
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+
+\begin{document}
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+%\selectlanguage{english}
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing
+
+% ---
+% Capa
+% ---
+\capaifpb
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto
+% ---
+
+
+\newpage
+\input{folhadeaprovacao}
+\input{estruturas/agradecimentos}
+\input{estruturas/resumo}
+\input{estruturas/listas}
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ---
+% Capítulos
+% ---
+\input{capitulos/1_introducao}
+\input{capitulos/2_fundamentacao}
+\input{capitulos/3_atividades}
+\input{capitulos/4_consideracoes}
+
+% ---
+% Referências
+%- \bibliography{referencias}
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{referencias}
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+\input{estruturas/apendices}
+
+
+
+\end{document}

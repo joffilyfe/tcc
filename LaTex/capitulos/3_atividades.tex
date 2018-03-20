@@ -6,7 +6,7 @@ Este capítulo apresenta as atividades realizadas para a construção de um clas
 
 \citeonline{laoprasopwattana2012differential} e \citeonline{lee2012simple} alegam que  a distinção entre casos de Dengue e Chikungunya é difícil de ser feita de forma eficaz apenas por observação porque os sintomas e sinais são bastante similares, sendo assim, é necessário realizar exames clínicos para obter um diagnóstico satisfatório. Nesse sentido, o uso de uma sistema computacional de apoio à decisão pode ser útil, por exemplo, para realizar a triagem inicial de pacientes em um hospital de maneira mais rápida e efetiva.
 
-Existem pelo menos dois tipos de exames que podem ser utilizados para detecção de Dengue. São eles: o RT-PCR e NS1 ELISA \cite{verma2016evaluation}. Os dois exames possuem características distintas para a detecção do vírus da dengue, no Brasil o exame que utiliza o NS1 Elisa é realizado por meio do Sistema Único de Saúde (SUS) desde agosto de 2017\footnote{\url{http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=1&pagina=56&data=10/08/2017}}. \citeonline{mata2014} realizaram um estudo comparativo entre os exames de teste rápido do tipo NS1 ELISA a fim de detectar a precisão de cada um. O estudo concluiu que a precisão dos exames pode variar entre 55,8 a 83,4\%, o que pode culminar na alta equivocada de pacientes. O valor destes exames pode variar de R\$ 13,00 a R\$ 28,00.
+Existem pelo menos dois tipos de exames que podem ser utilizados para detecção de Dengue. São eles: o RT-PCR (\textit{Reverse transcription polymerase chain reaction}) e NS1 ELISA \cite{verma2016evaluation}. Os dois exames possuem características distintas para a detecção do vírus da dengue, no Brasil o exame que utiliza o NS1 Elisa é realizado por meio do Sistema Único de Saúde (SUS) desde agosto de 2017\footnote{\url{http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=1&pagina=56&data=10/08/2017}}. \citeonline{mata2014} realizaram um estudo comparativo entre os exames de teste rápido do tipo NS1 ELISA a fim de detectar a precisão de cada um. O estudo concluiu que a precisão dos exames pode variar entre 55,8 a 83,4\%, o que pode culminar na alta equivocada de pacientes. O valor destes exames pode variar de R\$ 13,00 a R\$ 28,00.
 
 \citeonline{Cecilia2015} demonstram em seu estudo um exame do tipo RT-PCR capaz de detectar dengue e chikungunya com taxas de assertividade de 95\% a 100\% respectivamente. Diferentemente dos exames utilizados pelo SUS, o RT-PCR é mais caro que um semelhante como o NS1 ELISA e também necessita de melhores aparatos laboratoriais \cite{verma2016evaluation}.
 
@@ -19,7 +19,7 @@ Sabendo que os sinais e sintomas apresentados pelas duas doenças são semelhant
 
 \textit{É possível realizar a classificação entre duas doenças com sinais e sintomas similares, descritos apenas de forma binária como "sim ou não", de modo que a probabilidade de acerto seja igual ou superior a 80\%?}
 
-A porcentagem de 80\% para a precisão de acerto foi definida levando em consideração os exames clínicos existentes para a detecção das duas doenças.
+A porcentagem de 80\% para a precisão de acerto foi definida levando em consideração os exames clínicos existentes, onde os exames mais acessíveis possuem média semelhante para a detecção das duas doenças.
 
 Para a execução deste trabalho as etapas a seguir foram realizadas:
 
@@ -39,7 +39,7 @@ Para a execução deste trabalho as etapas a seguir foram realizadas:
 
 A concepção do modelo de classificação - objeto deste trabalho - utilizou um conjunto de dados de pacientes da rede pública de atendimento do estado da Paraíba, concedidos pela Secretaria da Saúde do Estado da Paraíba (SES-PB). Os dados fornecem informações sobre os pacientes com suspeita ou com a confirmação de Dengue e Chikungunya no ano de 2016.
 
-Os dados, disponibilizados em formato de arquivo CSV, compreendem entre 156 e 159 atributos de informação (colunas no arquivo), para dengue e chikungunya respectivamente. Os atributos variam desde a localidade de moradia do paciente até o resultado de exames realizados. A Figura \ref{fig:csvses} exibe um fragmento do \textit{dataset}, onde é possível observar que existem instâncias com dados não informados como também é possível observar o tipo de informação que as colunas possuem.
+Os dados, disponibilizados em formato de arquivo CSV, compreendem entre 156 e 159 atributos de informação (colunas no arquivo), para dengue e chikungunya respectivamente. Os atributos variam desde a localidade de moradia do paciente até o resultado de exames realizados. A Figura \ref{fig:csvses} exibe um fragmento do \textit{dataset}, onde é possível observar que existem instâncias com dados não informados como também é possível observar o tipo de informação que as colunas possuem (o valor 1 representa SIM e o valor 2 representa NÃO).
 
 \begin{figure}[htb]
   \caption{\label{fig:csvses}Fragmento de informação sobre doenças}
@@ -64,7 +64,7 @@ Inicialmente, foi necessário analisar o conjunto de metadados para entender o c
 
 As etapas de seleção, pré-processamento e transformação do KDD foram aplicadas aos dados fornecidos pela SES-PB. Na fase de seleção, foram removidos do \textit{dataset} os dados sobre outras doenças fora do contexto deste trabalho como também os atributos que em nada contribuíram durante a fase de mineração, como, por exemplo, a cidade do paciente.
 
-Durante a etapa de pré-processamento, foi necessário efetuar a normalização de datas para um formato único. Também foram removidas instâncias que não possuíam as informações completas sobre o quadro de sinais e sintomas das doenças. Nesta etapa também foram retiradas do \textit{dataset} as instâncias que estavam marcadas como casos descartados ou inconclusivos. Inicialmente o \textit{dataset} contava com 58.657 instâncias sobre os pacientes e, após a etapa de pré-processamento, 17.205 instâncias restaram. De uma média de 157 atributos apenas 21 foram mantidos. Estes atributos são os sinais e sintomas dos pacientes para cada doença (Tabela \ref{tab:21colunas}). As opções de valores para estes atributos é binária, sendo 0 a representação negativa para o sinal ou sintoma e 1 a representação positiva para o mesmo.
+Durante a etapa de pré-processamento, foi necessário efetuar a normalização de datas para um formato único. Também foram removidas instâncias que não possuíam as informações completas sobre o quadro de sinais e sintomas das doenças. Nesta etapa também foram retiradas do \textit{dataset} as instâncias que estavam marcadas como casos descartados ou inconclusivos. Inicialmente o \textit{dataset} contava com 58.657 instâncias sobre os pacientes e, após a etapa de pré-processamento, 17.205 instâncias restaram. De uma média de 157 atributos apenas 21 foram mantidos. Estes atributos são os sinais e sintomas dos pacientes para cada doença (Tabela \ref{tab:21colunas}).
 
 \begin{table}[h]
 \begin{center}
@@ -137,12 +137,12 @@ O Quadro \ref{quadro:arff} exibe um fragmento do arquivo de tipo ARFF criado a p
 
 A tarefa de classificação foi escolhida para ser analisada no processo de mineração de dados porque nós já havíamos iniciado outro processo de classificação com dados similares, dessa forma existia uma certa familiaridade com tal tarefa. Com os dados previamente consolidados, o processo de criação do classificador pôde ser iniciado. Nesta etapa a hipótese foi investigada exaustivamente, também foram analisados os parâmetros de sensitividade e especificidade resultantes de cada classificação. Os três algoritmos escolhidos para a realização da classificação foram Naive bayes, \textit{Support Vector Machine} (SVM) e \textit{Classification and Regression Trees} (CART). Estes são algoritmos bastante utilizados em áreas como agricultura, medicina e geologia \cite{dong2014nonlinear}.
 
-Assim que a etapa de transformação dos dados foi finalizada, o processo de classificação pôde ser iniciado. A linguagem R foi utilizada para treinar e testar os modelos de classificação. Para treinamento dos algoritmos foram utilizadas as 17.205 instâncias resultantes da fase de pré-processamento dos dados (100\% dos dados), e foi utilizado o método \textit{k-fold Cross-Validation} com o número de \textit{fold} definido em 10 ($k = 10$). As próximas seções (3.5.1, 3.5.2, 3.5.3, 3.5.4) demonstram o processo de classificação para cada um dos algoritmos escolhidos para este experimento e a Seção 3.5.5 condensa as informações apresentadas com uma análise final para os resultados.
+Assim que a etapa de transformação dos dados foi finalizada, o processo de classificação pôde ser iniciado. A linguagem R foi utilizada para treinar e testar os modelos de classificação. Para treinamento dos algoritmos foram utilizadas as 17.205 instâncias resultantes da fase de pré-processamento dos dados (100\% dos dados), e foi utilizado o método \textit{k-fold Cross-Validation} com o número de \textit{fold} definido em 10 ($k = 10$). As próximas seções (3.5.1, 3.5.2, 3.5.3, 3.5.4) demonstram o processo de classificação para cada um dos algoritmos escolhidos para este experimento, bem como seu respectivo desempenho, e a Seção 3.5.5 condensa as informações apresentadas com uma análise final para os resultados.
 
 \subsection{Naive Bayes}
 O classificador Naive Bayes é um dos mais utilizados no aprendizado de máquina por causa da sua simplicidade, velocidade para treinamento e capacidade em aprender sobre problemas complexos \cite{dong2014nonlinear,zhang2004optimality,chakrabarti2002mining}. Trata-se de um algoritmo fundamentado no teorema de Bayes para classificação probabilística. O teorema determina a probabilidade de acontecimento para uma classe de acordo com as observações de dados anteriores \cite{Aggarwal2015}. Desta forma, é possível atualizar a probabilidade de um evento após investigar as evidências sobre o mesmo. O teorema recebe este nome não só por causa do seu descobridor (Thomas Bayes) mas também por ser considerado ingênuo (\textit{naive}) pela sua suposição de que todas as variáveis de um problema são independentes condicionalmente, sendo assim o acontecimento de um evento não deve influenciar na ocorrência de outros conjuntos de eventos para outras variáveis.
 
-O primeiro teste de classificação foi realizado utilizando o algoritmo Naive Bayes, onde os parâmetros para treinamento foram os 21 sinais e sintomas mostrados na Tabela \ref{tab:21colunas}  para as duas doenças. O conjunto de treino foi processado utilizando o método \textit{k-fold} e a matriz de confusão pode ser vista no Quadro \ref{quadro:naivematriz1}.
+O primeiro teste de classificação foi realizado utilizando o algoritmo Naive Bayes, onde os parâmetros para treinamento foram os 21 sinais e sintomas mostrados na Tabela \ref{tab:21colunas}  para as duas doenças. A matriz de confusão pode ser vista no Quadro \ref{quadro:naivematriz1}.
 
 \begin{quadro}
 \caption{\label{quadro:naivematriz1}Matriz de confusão do algoritmo Naive Bayes}
@@ -173,7 +173,7 @@ O primeiro teste de classificação foi realizado utilizando o algoritmo Naive B
 
 Por meio do Quadro \ref{quadro:naivematriz1} é possível observar que a precisão balanceada foi de 58,48\%, ou seja, o algoritmo foi capaz de acertar 58,48\% das vezes para o nosso conjunto de dados. É importante ressaltar que apenas essa medida não é suficiente para informar se um algoritmo é bom ou ruim para o conjunto dos dados, é preciso observar também as medidas como \textit{sensitivity} e \textit{specificity}.
 
-É possível observar no Quadro \ref{quadro:naivematriz1} que o nosso algoritmo foi muito enfático para determinar quais instâncias pertenciam ao conjunto da Dengue. Conforme resultado da medida de sensitividade (\textit{sensitivity} ou \textit{recall}), em 92,12\% das instâncias o algoritmo classificou corretamente os casos de dengue. Entretanto a medida de especificidade (\textit{specificity}) demonstra que o algoritmo acertou apenas 24,84\% dos casos para a Chikungunya. De uma maneira geral o algoritmo não obteve a performance necessária para validar a hipótese do trabalho e demonstrou uma certa tendência para classificar as instâncias como Dengue, o que, por sua vez, pode ser um aspecto perigoso quando tratamos de identificar doenças.
+É possível observar no Quadro \ref{quadro:naivematriz1} que o algoritmo Naive Bayes foi muito enfático para determinar quais instâncias pertenciam ao conjunto da Dengue. Conforme resultado da medida de sensitividade (\textit{sensitivity} ou \textit{recall}), em 92,12\% das instâncias o algoritmo classificou corretamente os casos de dengue. Entretanto a medida de especificidade (\textit{specificity}) demonstra que o algoritmo acertou apenas 24,84\% dos casos para a Chikungunya. De uma maneira geral o algoritmo não obteve a performance necessária para validar a hipótese do trabalho e demonstrou uma certa tendência para classificar as instâncias como Dengue, o que, por sua vez, pode ser um aspecto perigoso quando tratamos de identificar doenças.
 
 \subsection{\textit{Classification and Regression Trees}}
 
@@ -208,7 +208,7 @@ Assim como no processo de classificação com o Naive Bayes, foram utilizados os
 \legend{Fonte: O autor}
 \end{quadro}
 
-É possível observar que a precisão balanceada é de 70.00\%, ou seja, 11.52\% mais alta que o Naive Bayes, entretanto também precisamos observar as outras estatísticas derivadas do processo. Para a classificação de instâncias com o rótulo real de Dengue (sensitividade), o algoritmo obteve uma precisão de 79.53\%, 12.59\% abaixo do Naive Bayes. A classificação de instâncias com o rótulo de Chikungunya (especificidade) obteve uma performance de 60.46\%, 35.62\% acima do Naive Bayes.
+É possível observar que a precisão balanceada é de 70.00\%, ou seja, 11.52\% mais alta que o Naive Bayes, entretanto também precisamos observar as outras estatísticas derivadas do processo. Para a classificação de instâncias com o rótulo real de Dengue (sensitividade), o algoritmo obteve uma precisão de 79.53\%, representando uma redução de 12.59\% em comparação com o Naive Bayes. A classificação de instâncias com o rótulo de Chikungunya (especificidade) obteve uma performance de 60.46\%, o que representa 35.62\% acima do Naive Bayes.
 
 De uma maneira geral, o CART obteve uma performance consideravelmente superior ao Naive Bayes. Com a precisão média em 70.00\%, o CART não atingiu a performance mínima esperada pela hipótese do trabalho.
 
@@ -258,7 +258,7 @@ Assim como nos exemplos com o Naive Bayes e CART, foi gerado um modelo de classi
 \end{quadro}
 
 
-\subsection{Nova bateria de testes}
+\subsection{Experimentação aplicando a técnica de Seleção de Atributos}
 
 Como foi discutido anteriormente, os sinais e sintomas apresentados pelos pacientes são muito parecidos. Dois pacientes com os mesmos sintomas podem ter doenças diferentes (entre Dengue e Chikungunya). Este fenômeno é conhecido na mineração de dados como overlapping ou sobreposição de classes \cite{xiong2010classification}.
 
@@ -300,7 +300,7 @@ Com o fim do processo de classificação foi possível quantificar qual algoritm
   \end{center}
 \end{figure}
 
-De uma maneira geral, os três algoritmos não obtiveram a performance mínima para validar a hipótese. Entendemos que a natureza do problema de classificação abordado neste trabalho não demanda uma solução trivial, e é necessário especializar o processo de classificação direcionado às particularidades do problema.
+De uma maneira geral, os três algoritmos não obtiveram a medição  mínima de desempenho para validar a hipótese. Entendemos que a natureza do problema de classificação abordado neste trabalho não demanda uma solução trivial, e é necessário especializar o processo de classificação direcionado às particularidades do problema.
 
 Fatores como o desbalanceamento do \textit{dataset} e \textit{overlapping} de classes impactaram diretamente os resultados apresentados, outros fatores como atributos binários não ajudam para a detecção da borda de decisão. Para clarificar este entendimento podemos ter como exemplo a possibilidade de que o sinal de febre seja mais acentuado em uma doença que em outra, sendo assim, esta característica poderia vir a ajudar numa melhor classificação. A obtenção de atributos adicionais e relevantes para identificação  das  duas doenças poderá ajudar na melhoria do desempenho  dos classificadores. Ainda assim, é necessário levar em consideração que mesmo com mais dados há o risco da borda que separa estas duas doenças não ser suficientemente clara para as técnicas selecionadas para a classificação.
 

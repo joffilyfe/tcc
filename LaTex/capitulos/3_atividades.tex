@@ -64,30 +64,7 @@ Inicialmente, foi necessário analisar o conjunto de metadados para entender o c
 
 As etapas de seleção, pré-processamento e transformação do KDD foram aplicadas aos dados fornecidos pela SES-PB. Na fase de seleção, foram removidos do \textit{dataset} os dados sobre outras doenças fora do contexto deste trabalho como também os atributos que em nada contribuíram durante a fase de mineração, como, por exemplo, a cidade do paciente.
 
-Durante a etapa de pré-processamento, foi necessário efetuar a normalização de datas para um formato único. Também foram removidas instâncias que não possuíam as informações completas sobre o quadro de sinais e sintomas das doenças. Nesta etapa também foram retiradas do \textit{dataset} as instâncias que estavam marcadas como casos descartados ou inconclusivos. Inicialmente o \textit{dataset} contava com 58.657 instâncias sobre os pacientes e, após a etapa de pré-processamento, 17.205 instâncias restaram. De uma média de 157 atributos apenas 21 foram mantidos. Estes atributos são os sinais e sintomas dos pacientes para cada doença (Tabela \ref{tab:21colunas}).
-
-\begin{table}[h]
-\begin{center}
-\caption{\label{tab:21colunas}Colunas selecionadas após processamento}
-
-\begin{tabular}{c|c|c|c}
-\hline 
-Febre & Mialgia & Cefaleia & Exantema \\ 
-\hline 
-Vômito & Náusea & Dor nas costas & Conjuntivite \\ 
-\hline 
-Artrite & Artralgia & Auto Imune & Petéquia \\ 
-\hline 
-Leucopenia & Prova do laço & Dor Retro-orbitária & Diabetes \\ 
-\hline 
-Doenças renais & Hipertensão & Ácido péptico & • \\ 
-\hline 
-\end{tabular} 
-\legend{Fonte: O autor}
-
-\end{center}
-\end{table}
-\newpage
+Durante a etapa de pré-processamento, foi necessário efetuar a normalização de datas para um formato único. Também foram removidas instâncias que não possuíam as informações completas sobre o quadro de sinais e sintomas das doenças. Nesta etapa também foram retiradas do \textit{dataset} as instâncias que estavam marcadas como casos descartados ou inconclusivos. Inicialmente o \textit{dataset} contava com 58.657 instâncias sobre os pacientes e, após a etapa de pré-processamento, 17.205 instâncias restaram. De uma média de 157 atributos apenas 21 foram mantidos (febre, mialgia, cefaleia, exantema, vômito, náusea, dor nas costas, conjuntivite, artrite, artralgia, auto imune, petéquia, leucopenia, prova do laço, dor retro-orbitária, diabetes, hematolog, hepatopatia, doenças renais, hipertensão, ácido péptico). Os 21 atributos mantidos são os sinais e sintomas dos pacientes para cada doença e foram mantidos porque apenas estes fazem parte do contexto do problema (classificação por meio de sinais e sintomas).
 
 Na etapa  de transformação, os dados foram mantidos em dois formatos distintos para posterior utilização: CSV e ARFF. Para realizar a transformação do arquivo CSV em um arquivo ARFF foi construído um script na linguagem Python capaz de produzir um arquivo ARFF a partir dos dados e metadados de um arquivo CSV.
 
@@ -142,7 +119,7 @@ Assim que a etapa de transformação dos dados foi finalizada, o processo de cla
 \subsection{Naive Bayes}
 O classificador Naive Bayes é um dos mais utilizados no aprendizagem de máquina por causa da sua simplicidade, velocidade para treinamento e capacidade em aprender sobre problemas complexos \cite{dong2014nonlinear,zhang2004optimality,chakrabarti2002mining}. Trata-se de um algoritmo fundamentado no teorema de Bayes para classificação probabilística. O teorema determina a probabilidade de acontecimento para uma classe de acordo com as observações de dados anteriores \cite{Aggarwal2015}. Desta forma, é possível atualizar a probabilidade de um evento após investigar as evidências sobre o mesmo. O teorema recebe este nome não só por causa do seu descobridor (Thomas Bayes) mas também por ser considerado ingênuo (\textit{naive}) pela sua suposição de que todas as variáveis de um problema são independentes condicionalmente, sendo assim o acontecimento de um evento não deve influenciar na ocorrência de outros conjuntos de eventos para outras variáveis.
 
-O primeiro teste de classificação foi realizado utilizando o algoritmo Naive Bayes, onde os parâmetros para treinamento foram os 21 sinais e sintomas mostrados na Tabela \ref{tab:21colunas}  para as duas doenças. A matriz de confusão pode ser vista no Quadro \ref{quadro:naivematriz1}.
+O primeiro teste de classificação foi realizado utilizando o algoritmo Naive Bayes, onde os parâmetros para treinamento foram os 21 sinais e sintomas (febre, mialgia, cefaleia, exantema, vômito, náusea, dor nas costas, conjuntivite, artrite, artralgia, auto imune, petéquia, leucopenia, prova do laço, dor retro-orbitária, diabetes, hematolog, hepatopatia, doenças renais, hipertensão, ácido péptico) para as duas doenças. A matriz de confusão pode ser vista no Quadro \ref{quadro:naivematriz1}.
 
 \begin{quadro}
 \caption{\label{quadro:naivematriz1}Matriz de confusão do algoritmo Naive Bayes}

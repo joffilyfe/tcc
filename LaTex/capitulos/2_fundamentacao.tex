@@ -39,7 +39,7 @@ O \emph{Knowledge Discovery in Database} (KDD) é um processo de descoberta de c
 
 O processo de KDD é iniciado pela etapa de seleção de dados. Este é um passo demorado e, muitas vezes, complexo, visto que um projeto pode utilizar uma ou mais fontes de dados para a seleção, e o que será coletado durante esta etapa também vai variar de acordo com o contexto do projeto. É comum que as informações a serem coletadas sejam escolhidas por um especialista no domínio do problema \cite{Boente2008}. A seleção de dados, muitas vezes, se depara com fontes que apresentam os seus dados de forma semiestruturada ou não estruturada. Neste sentido é necessário criar programas ou utilizar ferramentas que auxiliem, de maneira prática, o acesso, captura e armazenamento das informações.
 
-É comum utilizarmos linguagens de programação para a criação de scripts que automatizam o trabalho de seleção, a exemplo da linguagem Python\footnote{\url{https://www.python.org}} \cite{Smedt2012}. Também podemos utilizar a linguagem SQL para a extração de informações já estruturadas em bases de dados consolidadas. Fica evidente, então, que esta etapa poderá utilizar uma ou mais ferramentas para a sua execução.
+É comum utilizarmos linguagens de programação para a criação de scripts que automatizam o trabalho de seleção, a exemplo da linguagem Python \cite{python2018, Smedt2012}. Também podemos utilizar a linguagem SQL para a extração de informações já estruturadas em bases de dados consolidadas. Fica evidente, então, que esta etapa poderá utilizar uma ou mais ferramentas para a sua execução.
 
 \subsection{Pré-processamento}
 
@@ -78,7 +78,7 @@ O classificador pode trabalhar com tarefas onde as opções de classes para trei
 
 A classificação binária remete à tarefa onde o algoritmo precisa aprender sobre duas classes, normalmente nomeadas como   Positiva e Negativa. Um exemplo de classificação binária é quando o algoritmo precisa determinar se um paciente está ou não com uma doença específica. Já um problema multiclasse remete à tarefa onde o algoritmo precisa aprender sobre como classificar uma instância mediante a escolha entre três ou mais opções de classes. Classificar uma doença por meio de vários níveis de risco é uma tarefa de classificação multiclasse.
 
-Os modelos de classificação são produzidos a partir de informações estatísticas, lógicas e padrões resultantes do processamento dos dados de entrada\footnote{\url{https://docs.microsoft.com/en-us/sql/analysis-services/data-mining/mining-models-analysis-services-data-mining}}, e estes dados são as instâncias de um \emph{dataset}, onde cada instância é composta por um conjunto de valores relacionados aos atributos. É possível utilizar a mesma fonte de dados para treinar vários modelos diferentes de classificação. Algoritmos como Naive Bayes \cite{Mccallum1998}, \emph{Support Vector Machines} (SVM) \cite{Meyer2017} e árvores de decisão \cite{Schmid2013} resultarão em modelos distintos, cada um com suas características, pontos fortes e fracos. A escolha de qual algoritmo utilizar vai depender, por exemplo, do contexto do problema, tamanho do \emph{dataset} e nível de desbalanceamento das classes (desproporção entre o número de exemplos de cada classe).
+Os modelos de classificação são produzidos a partir de informações estatísticas, lógicas e padrões resultantes do processamento dos dados de entrada, e estes dados são as instâncias de um \emph{dataset}, onde cada instância é composta por um conjunto de valores relacionados aos atributos. É possível utilizar a mesma fonte de dados para treinar vários modelos diferentes de classificação. Algoritmos como Naive Bayes \cite{Mccallum1998}, \emph{Support Vector Machines} (SVM) \cite{Meyer2017} e árvores de decisão \cite{Schmid2013} resultarão em modelos distintos, cada um com suas características, pontos fortes e fracos. A escolha de qual algoritmo utilizar vai depender, por exemplo, do contexto do problema, tamanho do \emph{dataset} e nível de desbalanceamento das classes (desproporção entre o número de exemplos de cada classe).
 
 Antes da criação de um modelo de dados é preciso selecionar quais instâncias de um \emph{dataset} serão utilizadas para treinamento do algoritmo. Existem técnicas específicas para esta necessidade, sendo as mais conhecidas: a \emph{holdout} e a \emph{k-fold Cross-validation} \cite{Kohavi1995}.
 
@@ -95,7 +95,7 @@ O método \emph{k-fold} consiste em segmentar o conjunto de dados em K grupos (\
 
 \section{Ferramentas de Suporte à Análise de Dados}
 
-A partir da evolução da Computação e da popularização da Ciência de Dados, ferramentas cada vez mais completas tem sido criadas para oferecer o suporte necessário para as etapas da análise de dados. Atualmente algumas das ferramentas mais utilizadas para este fim são a Weka \cite{Hall2009}, a linguagem de programação R\footnote{\url{https://www.r-project.org}} e a linguagem de programação Python\footnote{\url{https://www.python.org}}.
+A partir da evolução da Computação e da popularização da Ciência de Dados, ferramentas cada vez mais completas tem sido criadas para oferecer o suporte necessário para as etapas da análise de dados. Atualmente algumas das ferramentas mais utilizadas para este fim são a Weka \cite{Hall2009}, a linguagem de programação R \cite{r2018} e a linguagem de programação Python \cite{python2018}.
 
 \subsection{Weka}
 
@@ -120,7 +120,7 @@ A linguagem disponibiliza um REPL (\textit{read-eval-print-loop}) para a execuç
 
 \subsection{Python}
 
-Python é uma linguagem de programação interpretada de propósito geral, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte\footnote{\url{https://www.python.org/doc/essays/blurb/}}. É  linguagem de alto nível que é fundamentada na priorização do esforço do programador acima do esforço computacional.
+Python é uma linguagem de programação interpretada de propósito geral, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte \cite{python2018}. É  linguagem de alto nível que é fundamentada na priorização do esforço do programador acima do esforço computacional.
 
 Diferentemente do Weka e da linguagem R, Python não foi criada com o intuito de servir à computação estatística e gráfica, porém, por sua capacidade de extensão, os desenvolvedores colaborativos criaram módulos que conversam com outras linguagens de programação como FORTRAN\footnote{\url{https://web.fe.up.pt/~aarh/pc/PC-capitulo2.pdf}} e C\footnote{\url{https://docs.python.org/2/extending/extending.html}} o que tornou possível a criação de algoritmos eficientes para a análise de dados. Atualmente é possível encontrar muitos módulos para a análise de dados e visualização dos resultados para Python.
 
